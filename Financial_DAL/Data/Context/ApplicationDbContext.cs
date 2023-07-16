@@ -17,6 +17,9 @@ public class ApplicationDbContext : DbContext
     public virtual DbSet<ToDoList> ToDoLists=> Set<ToDoList>();
     public virtual DbSet<Priority> Priority => Set<Priority>();
     public virtual DbSet<Assign> Assigns => Set<Assign>();
+    public virtual DbSet<MainCategory> MainCategories => Set<MainCategory>();
+    public virtual DbSet<SubCategory> SubCategories => Set<SubCategory>();
+    public virtual DbSet<UserDatabase> UserDatabases => Set<UserDatabase>();
 
 }
 

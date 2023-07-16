@@ -4,6 +4,7 @@ using Financial_DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Financial_DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230630135512_UserDatabase")]
+    partial class UserDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -363,9 +365,6 @@ namespace Financial_DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("MCategory_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Question")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -375,8 +374,6 @@ namespace Financial_DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("MCategory_Id");
 
                     b.HasIndex("SCategory_Id");
 
@@ -456,19 +453,11 @@ namespace Financial_DAL.Migrations
 
             modelBuilder.Entity("Financial_DAL.UserDatabase", b =>
                 {
-                    b.HasOne("Financial_DAL.MainCategory", "MainCategories")
-                        .WithMany("UserDatabases")
-                        .HasForeignKey("MCategory_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Financial_DAL.SubCategory", "SubCategories")
                         .WithMany("UserDatabases")
                         .HasForeignKey("SCategory_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MainCategories");
 
                     b.Navigation("SubCategories");
                 });
@@ -486,8 +475,6 @@ namespace Financial_DAL.Migrations
             modelBuilder.Entity("Financial_DAL.MainCategory", b =>
                 {
                     b.Navigation("SubCategories");
-
-                    b.Navigation("UserDatabases");
                 });
 
             modelBuilder.Entity("Financial_DAL.Priority", b =>

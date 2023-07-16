@@ -36,7 +36,7 @@ public class Transaction
     [Required]
     public decimal Amount { get; set; } = decimal.Zero;
 
-    [Range(0,100)]
+    [Range(0, 100)]
     public int Taxes { get; set; } = 0;
 
     [DataType(DataType.Date)]

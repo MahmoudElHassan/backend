@@ -27,6 +27,9 @@ builder.Services.AddScoped<ISourcesRepo, SourcesRepo>();
 builder.Services.AddScoped<IToDoListRepo, ToDoListRepo>();
 builder.Services.AddScoped<IPriorityrepo, PriorityRepo>();
 builder.Services.AddScoped<IAssignRepo, AssignRepo>();
+builder.Services.AddScoped<IMainCatregoryRepo, MainCategoryRepo>();
+builder.Services.AddScoped<ISubCategoryRepo, SubCategoryRepo>();
+builder.Services.AddScoped<IUserDatabaseRepo, UserDatabaseRepo>();
 
 
 #endregion
@@ -41,7 +44,9 @@ builder.Services.AddScoped<IStatusManager, StatusManager>();
 builder.Services.AddScoped<IToDoListManager, ToDoListManager>();
 builder.Services.AddScoped<IPriorityManager, PriorityManager>();
 builder.Services.AddScoped<IAssignManager,  AssignManager>();
-
+builder.Services.AddScoped<IMainCategoryManager, MainCategoryManager>();
+builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>();
+builder.Services.AddScoped<IUserDatabaseManager, UserDatabaseManager>();
 
 #endregion
 

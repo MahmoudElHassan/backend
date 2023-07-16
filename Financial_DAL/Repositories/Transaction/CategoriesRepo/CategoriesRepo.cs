@@ -1,4 +1,5 @@
-﻿namespace Financial_DAL;
+﻿
+namespace Financial_DAL;
 
 public class CategoriesRepo : GenericRepo<Category>, ICategoriesRepo
 {

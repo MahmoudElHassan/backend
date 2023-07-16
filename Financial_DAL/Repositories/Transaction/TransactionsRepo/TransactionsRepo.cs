@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
-
-namespace Financial_DAL;
+﻿namespace Financial_DAL;
 
 public class TransactionsRepo : GenericRepo<Transaction>, ITransactionsRepo
 {
