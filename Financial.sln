@@ -5,9 +5,11 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financial", "Financial\Financial.csproj", "{5FA9BAE6-CEA2-4BB4-A461-672ADEA3A504}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financial_BL", "Financial_BL\Financial_BL.csproj", "{EA300735-B666-48F2-A1F0-0E03687C3A04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financial_BL", "Financial_BL\Financial_BL.csproj", "{EA300735-B666-48F2-A1F0-0E03687C3A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financial_DAL", "Financial_DAL\Financial_DAL.csproj", "{022BB756-2E70-4A7E-8A9F-89FF96199E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financial_DAL", "Financial_DAL\Financial_DAL.csproj", "{022BB756-2E70-4A7E-8A9F-89FF96199E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financial_NUnitTest", "Financial_Test\Financial_NUnitTest.csproj", "{40CD7EE5-6A0B-4246-881A-56C06D8671C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{022BB756-2E70-4A7E-8A9F-89FF96199E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{022BB756-2E70-4A7E-8A9F-89FF96199E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{022BB756-2E70-4A7E-8A9F-89FF96199E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40CD7EE5-6A0B-4246-881A-56C06D8671C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40CD7EE5-6A0B-4246-881A-56C06D8671C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40CD7EE5-6A0B-4246-881A-56C06D8671C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40CD7EE5-6A0B-4246-881A-56C06D8671C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

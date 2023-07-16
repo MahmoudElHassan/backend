@@ -30,8 +30,6 @@ builder.Services.AddScoped<IAssignRepo, AssignRepo>();
 builder.Services.AddScoped<IMainCatregoryRepo, MainCategoryRepo>();
 builder.Services.AddScoped<ISubCategoryRepo, SubCategoryRepo>();
 builder.Services.AddScoped<IUserDatabaseRepo, UserDatabaseRepo>();
-
-
 #endregion
 
 #region Managers
@@ -47,7 +45,6 @@ builder.Services.AddScoped<IAssignManager,  AssignManager>();
 builder.Services.AddScoped<IMainCategoryManager, MainCategoryManager>();
 builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>();
 builder.Services.AddScoped<IUserDatabaseManager, UserDatabaseManager>();
-
 #endregion
 
 #region Allow Cors
