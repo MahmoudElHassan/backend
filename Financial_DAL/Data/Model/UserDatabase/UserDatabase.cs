@@ -22,6 +22,9 @@ public class UserDatabase
     [MaxLength(250)]
     public string Comment { get; set; } = string.Empty;
 
+    public bool IsDelete { get; set; } = false;
+
+
     [ForeignKey("SubCategories")]
     public int SCategory_Id { get; set; }
     public virtual SubCategory? SubCategories { get; set; }

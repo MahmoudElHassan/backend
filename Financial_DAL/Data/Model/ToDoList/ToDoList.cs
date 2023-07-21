@@ -8,11 +8,14 @@ public class ToDoList
     [Key]
     public Guid ListId { get; set; }
 
-    public Boolean Statu { get; set; }
+    public bool Statu { get; set; } = false;
     [MaxLength(500)]
     public string Description { get; set; } = string.Empty;
     [Required]
     public DateTime Date { get; set; } = DateTime.Now;
+
+    public bool IsDelete { get; set; } = false;
+
 
     [ForeignKey("Priority")]
     public int Priority_Id { get; set; }

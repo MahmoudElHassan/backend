@@ -21,7 +21,7 @@ public class MainCategoryManager : IMainCategoryManager
     #region Method
     public List<ReadMainCategoryDTO> GetAll()
     {
-        var dbMainCategory = _mainCategoryRepo.GetAll();
+        var dbMainCategory = _mainCategoryRepo.GetAll().Where(d => d.IsDelete == false);
 
         return _mapper.Map<List<ReadMainCategoryDTO>>(dbMainCategory);
     }
@@ -40,6 +40,7 @@ public class MainCategoryManager : IMainCategoryManager
     {
         var dbModel = _mapper.Map<MainCategory>(mainCategory);
         //dbModel.MCategoryId = Guid.NewGuid();
+        dbModel.IsDelete = false;
 
         _mainCategoryRepo.Add(dbModel);
         _mainCategoryRepo.SaveChanges();
@@ -52,6 +53,9 @@ public class MainCategoryManager : IMainCategoryManager
         var dbMainCategory = _mainCategoryRepo.GetByintId(mainCategoryDTO.MCategoryId);
 
         if (dbMainCategory == null)
+            return false;
+
+        if (dbMainCategory.IsDelete == true)
             return false;
 
         _mapper.Map(mainCategoryDTO, dbMainCategory);
@@ -67,7 +71,6 @@ public class MainCategoryManager : IMainCategoryManager
         _mainCategoryRepo.DeleteByintId(id);
         _mainCategoryRepo.SaveChanges();
     }
-
 
     #endregion
 }

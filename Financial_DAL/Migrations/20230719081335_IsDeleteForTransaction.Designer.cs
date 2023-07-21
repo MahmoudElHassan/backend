@@ -4,6 +4,7 @@ using Financial_DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Financial_DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230719081335_IsDeleteForTransaction")]
+    partial class IsDeleteForTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasKey("AssignId");
 
-                    b.ToTable("Assigns", (string)null);
+                    b.ToTable("Assigns");
                 });
 
             modelBuilder.Entity("Financial_DAL.Category", b =>
@@ -50,9 +52,6 @@ namespace Financial_DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Sale_Id")
                         .HasColumnType("int");
 
@@ -60,7 +59,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasIndex("Sale_Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Financial_DAL.Customer", b =>
@@ -78,9 +77,6 @@ namespace Financial_DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("LastContact")
                         .HasColumnType("datetime2");
@@ -132,7 +128,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasIndex("Statu_Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Financial_DAL.MainCategory", b =>
@@ -143,9 +139,6 @@ namespace Financial_DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MCategoryId"), 1L, 1);
 
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
                     b.Property<string>("MCategoryName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -153,7 +146,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasKey("MCategoryId");
 
-                    b.ToTable("MainCategories", (string)null);
+                    b.ToTable("MainCategories");
                 });
 
             modelBuilder.Entity("Financial_DAL.Priority", b =>
@@ -170,7 +163,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasKey("PriorityId");
 
-                    b.ToTable("Priority", (string)null);
+                    b.ToTable("Priority");
                 });
 
             modelBuilder.Entity("Financial_DAL.Sale", b =>
@@ -188,7 +181,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasKey("SaleId");
 
-                    b.ToTable("Sales", (string)null);
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Financial_DAL.Source", b =>
@@ -206,7 +199,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasKey("SourceId");
 
-                    b.ToTable("Sources", (string)null);
+                    b.ToTable("Sources");
                 });
 
             modelBuilder.Entity("Financial_DAL.Statu", b =>
@@ -224,7 +217,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasKey("StatutId");
 
-                    b.ToTable("Status", (string)null);
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("Financial_DAL.SubCategory", b =>
@@ -234,9 +227,6 @@ namespace Financial_DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SCategoryId"), 1L, 1);
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
 
                     b.Property<int>("MCategory_Id")
                         .HasColumnType("int");
@@ -250,7 +240,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasIndex("MCategory_Id");
 
-                    b.ToTable("SubCategories", (string)null);
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Financial_DAL.ToDoList", b =>
@@ -270,9 +260,6 @@ namespace Financial_DAL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Priority_Id")
                         .HasColumnType("int");
 
@@ -285,7 +272,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasIndex("Priority_Id");
 
-                    b.ToTable("ToDoLists", (string)null);
+                    b.ToTable("ToDoLists");
                 });
 
             modelBuilder.Entity("Financial_DAL.Transaction", b =>
@@ -341,7 +328,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasIndex("Category_Id");
 
-                    b.ToTable("Transactions", (string)null);
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("Financial_DAL.UserDatabase", b =>
@@ -381,9 +368,6 @@ namespace Financial_DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
                     b.Property<int>("MCategory_Id")
                         .HasColumnType("int");
 
@@ -401,7 +385,7 @@ namespace Financial_DAL.Migrations
 
                     b.HasIndex("SCategory_Id");
 
-                    b.ToTable("UserDatabases", (string)null);
+                    b.ToTable("UserDatabases");
                 });
 
             modelBuilder.Entity("Financial_DAL.Category", b =>

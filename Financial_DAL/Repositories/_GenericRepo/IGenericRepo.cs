@@ -10,5 +10,7 @@ public interface IGenericRepo<TEntity> where TEntity : class
     void Delete(TEntity entity);
     void DeleteById(Guid id);
     void DeleteByintId(int id);
+
     void SaveChanges();
+
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Financial.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/")]
 [ApiController]
 public class MainCategoryController : Controller
 {
@@ -15,15 +15,15 @@ public class MainCategoryController : Controller
         _mainCategoryManager = mainCategoryManager;
     }
 
-    // GET: api/<MainCategoryController>
-    [HttpGet]
+    // GET: api/GetAllMainCategory
+    [HttpGet("GetAllMainCategory")]
     public ActionResult<IEnumerable<ReadMainCategoryDTO>> GetMainCategory()
     {
         return _mainCategoryManager.GetAll();
     }
 
-    // GET: api/<MainCategoryController>/5
-    [HttpGet("{id:int}")]
+    // GET: api/GetMainCategoryById/5
+    [HttpGet("GetMainCategoryById/{id:int}")]
     public ActionResult<ReadMainCategoryDTO> GetMainCategoryById(int id)
     {
         var mainCaategory = _mainCategoryManager.GetByintId(id);
@@ -36,8 +36,8 @@ public class MainCategoryController : Controller
         return mainCaategory;
     }
 
-    // POST: api/<MainCategoryController>
-    [HttpPost]
+    // POST: api/AddMainCategory
+    [HttpPost("AddMainCategory")]
     public ActionResult<ReadMainCategoryDTO> AddMainCategory(AddMainCategoryDTO addMainCategoryDTOS)
     {
         var readMainCategoryDTOS = _mainCategoryManager.Add(addMainCategoryDTOS);
@@ -45,8 +45,8 @@ public class MainCategoryController : Controller
         return CreatedAtAction("GetMainCategoryById", new { id = readMainCategoryDTOS.MCategoryId }, readMainCategoryDTOS);
     }
 
-    // PUT: api/<MainCategoryController>
-    [HttpPut]
+    // PUT: api/EditMainCategory
+    [HttpPut("EditMainCategory")]
     public IActionResult EditMainCategory(UpdateMainCategoryDTO mainCategory)
     {
         var mainCategoryDTO = _mainCategoryManager.Update(mainCategory);
@@ -59,13 +59,14 @@ public class MainCategoryController : Controller
         return NotFound();
     }
 
-    // DELETE: api/<MainCategoryController>/5
+    // DELETE: api/DeleteMainCategory/5
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete("DeleteMainCategory/{id:int}")]
     public async Task<IActionResult> DeleteMainCategory(int id)
     {
         _mainCategoryManager.Delete(id);
 
         return NoContent();
     }
+
 }

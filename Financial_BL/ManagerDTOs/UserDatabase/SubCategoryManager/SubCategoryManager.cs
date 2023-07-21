@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Financial_DAL;
+using System.Data.Common;
 
 namespace Financial_BL;
 
@@ -21,7 +22,7 @@ public class SubCategoryManager : ISubCategoryManager
     #region Method
     public List<ReadSubCategoryDTO> GetAll()
     {
-        var dbSubCategory = _subCategoryRepo.GetAll();
+        var dbSubCategory = _subCategoryRepo.GetAll().Where(d => d.IsDelete == false);
 
         return _mapper.Map<List<ReadSubCategoryDTO>>(dbSubCategory);
     }
@@ -40,6 +41,7 @@ public class SubCategoryManager : ISubCategoryManager
     {
         var dbModel = _mapper.Map<SubCategory>(subCategory);
         //dbModel.MCategoryId = Guid.NewGuid();
+        dbModel.IsDelete = false;
 
         _subCategoryRepo.Add(dbModel);
         _subCategoryRepo.SaveChanges();
@@ -52,6 +54,9 @@ public class SubCategoryManager : ISubCategoryManager
         var dbSubCategory = _subCategoryRepo.GetByintId(subCategoryDTO.SCategoryId);
 
         if (dbSubCategory == null)
+            return false;
+
+        if (dbSubCategory.IsDelete == true)
             return false;
 
         _mapper.Map(subCategoryDTO, dbSubCategory);
@@ -67,7 +72,6 @@ public class SubCategoryManager : ISubCategoryManager
         _subCategoryRepo.DeleteByintId(id);
         _subCategoryRepo.SaveChanges();
     }
-
 
     #endregion
 }

@@ -4,7 +4,7 @@ using Financial_BL;
 
 namespace Financial.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/")]
 [ApiController]
 public class TransactionsController : ControllerBase
 {
@@ -17,15 +17,15 @@ public class TransactionsController : ControllerBase
 
 
 
-    // GET: api/Transactions
-    [HttpGet]
+    // GET: api/GetAllTransactions
+    [HttpGet("GetAllTransactions")]
     public ActionResult<IEnumerable<ReadTransactionDTO>> GetTransactions()
     {
         return _transactionsManager.GetAll();
     }
 
-    // GET: api/Transactions/5
-    [HttpGet("{id}")]
+    // GET: api/GetTransactionsById/5
+    [HttpGet("GetTransactionsById/{id}")]
     public ActionResult<ReadTransactionDTO> GetTransactionById(Guid id)
     {
         var transaction = _transactionsManager.GetById(id);
@@ -38,8 +38,8 @@ public class TransactionsController : ControllerBase
         return transaction;
     }
 
-    // POST: api/Transactions
-    [HttpPost]
+    // POST: api/AddTransactions
+    [HttpPost("AddTransactions")]
     public ActionResult<ReadTransactionDTO> AddTransaction(AddTrasnactionDTO addTransactionDto)
     {
         var readTransactionDto = _transactionsManager.Add(addTransactionDto);
@@ -47,8 +47,8 @@ public class TransactionsController : ControllerBase
         return CreatedAtAction("GetTransactionById", new { id = readTransactionDto.TransactionId }, readTransactionDto);
     }
 
-    // PUT: api/Transactions
-    [HttpPut]
+    // PUT: api/EditTransactions
+    [HttpPut("EditTransactions")]
     public IActionResult EditTransaction(UpdateTransactionDTO transaction)
     {
         //if (id != transaction.TransactionId)
@@ -66,8 +66,8 @@ public class TransactionsController : ControllerBase
         return NotFound();
     }
 
-    // DELETE: api/Transactions/5
-    [HttpDelete("{id}")]
+    // DELETE: api/DeleteTransactions/5
+    [HttpDelete("DeleteTransactions/{id}")]
     public async Task<IActionResult> DeleteTransaction(Guid id)
     {
         _transactionsManager.Delete(id);

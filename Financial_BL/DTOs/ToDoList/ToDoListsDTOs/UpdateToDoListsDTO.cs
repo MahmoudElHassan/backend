@@ -11,6 +11,7 @@ public class UpdateToDoListsDTO
     public string Description { get; set; } = string.Empty;
     [Required]
     public DateTime Date { get; set; } = DateTime.Now;
+    public bool IsDelete { get; set; }
 
     public int Priority_Id { get; set; }
 

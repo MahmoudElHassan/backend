@@ -2,7 +2,7 @@
 using Financial_BL.DTOs;
 using Financial_DAL;
 
-namespace Financial_BL;
+namespace Financial_BL.ManagerDTOs;
 
 public class CustomersManager : ICustomersManager
 {
@@ -22,7 +22,7 @@ public class CustomersManager : ICustomersManager
     #region Method
     public List<ReadCustomersDTOs> GetAll()
     {
-        var dbCustomer = _customersRepo.GetAll();
+        var dbCustomer = _customersRepo.GetAll().Where(d => d.IsDelete == false);
 
         return _mapper.Map<List<ReadCustomersDTOs>>(dbCustomer);
     }
@@ -41,6 +41,7 @@ public class CustomersManager : ICustomersManager
     {
         var dbModel = _mapper.Map<Customer>(customer);
         dbModel.CustomerId = Guid.NewGuid();
+        dbModel.IsDelete = false;
 
         _customersRepo.Add(dbModel);
         _customersRepo.SaveChanges();
@@ -53,6 +54,9 @@ public class CustomersManager : ICustomersManager
         var dbCustomer = _customersRepo.GetById(customerDto.CustomerId);
 
         if (dbCustomer == null)
+            return false;
+
+        if (dbCustomer.IsDelete == true)
             return false;
 
         _mapper.Map(customerDto, dbCustomer);
@@ -68,5 +72,6 @@ public class CustomersManager : ICustomersManager
         _customersRepo.DeleteById(id);
         _customersRepo.SaveChanges();
     }
+
     #endregion
 }

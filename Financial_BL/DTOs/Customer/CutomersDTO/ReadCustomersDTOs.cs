@@ -30,6 +30,7 @@ public class ReadCustomersDTOs
     public string Notes { get; set; } = string.Empty;
 
     //public string Owner { get; set; } = string.Empty;
+    public bool IsDelete { get; set; }
 
 
     public int Statu_Id { get; set; }

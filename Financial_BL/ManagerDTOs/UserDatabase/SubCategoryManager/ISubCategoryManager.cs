@@ -7,4 +7,5 @@ public interface ISubCategoryManager
     ReadSubCategoryDTO Add(AddSubCategoryDTO subCategory);
     bool Update(UpdateSubCategoryDTO subCategory);
     void Delete(int id);
+
 }

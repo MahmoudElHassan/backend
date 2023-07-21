@@ -24,6 +24,9 @@ public class AddTrasnactionDTO
     //[MaxLength(10)]
     public int Zip { get; set; } = 0;
 
+    public bool IsDelete { get; set; }
+
+
     [MaxLength(20)]
     public string Country { get; set; } = string.Empty;
 

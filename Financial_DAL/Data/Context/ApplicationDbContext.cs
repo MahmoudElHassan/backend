@@ -21,5 +21,22 @@ public class ApplicationDbContext : DbContext
     public virtual DbSet<SubCategory> SubCategories => Set<SubCategory>();
     public virtual DbSet<UserDatabase> UserDatabases => Set<UserDatabase>();
 
+
+    public override int SaveChanges()
+    {
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            var entity = entry.Entity;
+
+            if (entry.State == EntityState.Deleted) //&& entity is ISoftDelete
+            {
+                entry.State = EntityState.Modified;
+
+                entity.GetType().GetProperty("IsDelete").SetValue(entity, true);
+            }
+        }
+        return base.SaveChanges();
+    }
+
 }
 

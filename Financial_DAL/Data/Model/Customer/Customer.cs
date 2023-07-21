@@ -42,6 +42,8 @@ public class Customer
     [MaxLength(50)]
     public string Owner { get; set; } = string.Empty;
 
+    public bool IsDelete { get; set; } = false;
+
 
     [ForeignKey("Status")]
     public int Statu_Id { get; set; }

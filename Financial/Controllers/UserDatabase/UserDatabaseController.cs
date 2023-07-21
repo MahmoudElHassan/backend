@@ -6,7 +6,7 @@ using System.Transactions;
 
 namespace Financial.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/")]
 [ApiController]
 
 public class UserDatabaseController : Controller
@@ -18,15 +18,15 @@ public class UserDatabaseController : Controller
         _UserDBManager = UserDBManager;
     }
 
-    // GET: api/UserDBAll
-    [HttpGet]
+    // GET: api/GetAllUserDBAll
+    [HttpGet("GetAllUserDBAll")]
     public ActionResult<IEnumerable<ReadBoysGirlsDTO>> GetAllUserDB()
     {
         return _UserDBManager.GetAll();
     }
 
-    // GET: api/UserDBAll/5
-    [HttpGet("{id}")]
+    // GET: api/GetUserDBAllById/5
+    [HttpGet("GetUserDBAllById/{id}")]
     public ActionResult<ReadBoysGirlsDTO> GetAnyUsersById(Guid id)
     {
         var userDb = _UserDBManager.GetAllById(id);
@@ -39,8 +39,8 @@ public class UserDatabaseController : Controller
         return userDb;
     }
 
-    // GET: api/UserDBBoys/5
-    [HttpGet("Boys/{id}")]
+    // GET: api/GetUserDBBoysById/5
+    [HttpGet("GetUserDBBoysById/{id}")]
     public ActionResult<ReadBoysDTO> GetBoysById(Guid id)
     {
         var boysUserDb = _UserDBManager.GetBoysById(id);
@@ -53,8 +53,8 @@ public class UserDatabaseController : Controller
         return boysUserDb;
     }
 
-    // POST: api/UserDBAll
-    [HttpPost]
+    // POST: api/AddUserDBAll
+    [HttpPost("AddUserDBAll")]
     public ActionResult<ReadBoysGirlsDTO> AddAnyUsersDB(AddBoysGirlsDTO addUserDBDto)
     {
         var readUsersDbDto = _UserDBManager.AddAll(addUserDBDto);
@@ -62,8 +62,8 @@ public class UserDatabaseController : Controller
         return CreatedAtAction("GetAnyUsersById", new { id = readUsersDbDto.UserId }, readUsersDbDto);
     }
 
-    // POST: api/UserDBBoys
-    [HttpPost("Boys")]
+    // POST: api/AddUserDBBoys
+    [HttpPost("AddUserDBBoys")]
     public ActionResult<ReadBoysDTO> AddBoysUsersDB(AddBoysDTO addUserDBDto)
     {
         var readUsersDbDto = _UserDBManager.AddBoys(addUserDBDto);
@@ -71,9 +71,9 @@ public class UserDatabaseController : Controller
         return CreatedAtAction("GetBoysById", new { id = readUsersDbDto.UserId }, readUsersDbDto);
     }
 
-    // PUT: api/UserDB
-    [HttpPut]
-    public IActionResult EditAnyUserDB(UpdateBoysGirlsDTO userDb)
+    // PUT: api/EditAllUserDB
+    [HttpPut("EditAllUserDB")]
+    public IActionResult EditAllUserDB(UpdateBoysGirlsDTO userDb)
     {
         var UserDbDTO = _UserDBManager.UpdateAll(userDb);
 
@@ -85,8 +85,8 @@ public class UserDatabaseController : Controller
         return NotFound();
     }
 
-    // PUT: api/UserDB
-    [HttpPut("Boys")]
+    // PUT: api/EditBoysUserDB
+    [HttpPut("EditBoysUserDB")]
     public IActionResult EditBoysUserDB(UpdateBoysDTO userDb)
     {
         var UserDbDTO = _UserDBManager.UpdateBoys(userDb);
@@ -99,12 +99,13 @@ public class UserDatabaseController : Controller
         return NotFound();
     }
 
-    // DELETE: api/UserDB/5
-    [HttpDelete("{id}")]
+    // DELETE: api/DeleteUserDB/5
+    [HttpDelete("DeleteUserDB/{id}")]
     public async Task<IActionResult> DeleteUserDB(Guid id)
     {
         _UserDBManager.Delete(id);
 
         return NoContent();
     }
+
 }

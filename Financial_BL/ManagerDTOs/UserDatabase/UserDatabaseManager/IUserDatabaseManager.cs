@@ -9,7 +9,6 @@ public interface IUserDatabaseManager
     ReadBoysGirlsDTO? GetAllById(Guid id);
     ReadBoysDTO? GetBoysById(Guid id);
 
-
     ReadBoysGirlsDTO AddAll(AddBoysGirlsDTO userDatabase);
     ReadBoysDTO AddBoys(AddBoysDTO userDatabase);
 
@@ -17,4 +16,5 @@ public interface IUserDatabaseManager
     bool UpdateBoys(UpdateBoysDTO userDatabase);
 
     void Delete(Guid id);
+
 }

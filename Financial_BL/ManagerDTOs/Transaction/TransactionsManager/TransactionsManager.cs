@@ -22,7 +22,7 @@ public class TransactionsManager : ITransactionsManager
     #region Method
     public List<ReadTransactionDTO> GetAll()
     {
-        var dbTransactions = _transactionsRepo.GetAll();
+        var dbTransactions = _transactionsRepo.GetAll().Where(d=>d.IsDelete == false);
 
         return _mapper.Map<List<ReadTransactionDTO>>(dbTransactions);
     }
@@ -41,6 +41,14 @@ public class TransactionsManager : ITransactionsManager
     {
         var dbModel = _mapper.Map<Transaction>(transaction);
         dbModel.TransactionId = Guid.NewGuid();
+        dbModel.IsDelete= false;
+
+        //if (dbModel.Description == null || dbModel.Address2 == null || dbModel.Taxes == null)
+        //{
+        //    dbModel.Description = "";
+        //    dbModel.Address2 = "";
+        //    dbModel.Taxes = 0;
+        //}
 
         _transactionsRepo.Add(dbModel);
         _transactionsRepo.SaveChanges();
@@ -53,6 +61,9 @@ public class TransactionsManager : ITransactionsManager
         var dbTransaction = _transactionsRepo.GetById(transactionDTO.TransactionId);
 
         if (dbTransaction == null) 
+            return false;
+
+        if (dbTransaction.IsDelete == true)
             return false;
 
         _mapper.Map(transactionDTO, dbTransaction);
@@ -68,7 +79,6 @@ public class TransactionsManager : ITransactionsManager
         _transactionsRepo.DeleteById(id);
         _transactionsRepo.SaveChanges();
     }
-
 
     #endregion
 }

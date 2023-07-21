@@ -4,7 +4,7 @@ using Financial_DAL.Validations;
 
 namespace Financial_DAL;
 
-public class Transaction
+public class Transaction 
 {
     [Key]
     public Guid TransactionId { get; set; }
@@ -32,12 +32,13 @@ public class Transaction
     [MaxLength(20)]
     public string Country { get; set; } = string.Empty;
 
-
     [Required]
     public decimal Amount { get; set; } = decimal.Zero;
 
     [Range(0, 100)]
     public int Taxes { get; set; } = 0;
+
+    public bool IsDelete { get; set; } = false;
 
     [DataType(DataType.Date)]
     [Required]

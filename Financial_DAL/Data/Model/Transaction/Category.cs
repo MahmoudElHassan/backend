@@ -12,7 +12,7 @@ public class Category
     [Required]
     public string Category_Name { get; set; } = string.Empty;
 
-    //public decimal Total { get; set; }
+    public bool IsDelete { get; set; } = false;
 
     public virtual ICollection<Transaction> Transactions { get; set; } = new HashSet<Transaction>();
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Financial_BL.DTOs.TransactionsDTO;
 using Financial_DAL;
+using System.Data.Common;
 
 namespace Financial_BL;
 
@@ -22,7 +23,7 @@ public class ToDoListManager : IToDoListManager
     #region Method
     public List<ReadToDoListsDTO> GetAll()
     {
-        var dbToDoList = _todolistRepo.GetAll();
+        var dbToDoList = _todolistRepo.GetAll().Where(d => d.IsDelete == false);
 
         return _mapper.Map<List<ReadToDoListsDTO>>(dbToDoList);
     }
@@ -41,6 +42,8 @@ public class ToDoListManager : IToDoListManager
     {
         var dbModel = _mapper.Map<ToDoList>(ToDoList);
         dbModel.ListId = Guid.NewGuid();
+        dbModel.Statu = false;
+        dbModel.IsDelete = false;
 
         _todolistRepo.Add(dbModel);
         _todolistRepo.SaveChanges();
@@ -53,6 +56,9 @@ public class ToDoListManager : IToDoListManager
         var dbToDoList = _todolistRepo.GetById(todolistDTO.ListId);
 
         if (dbToDoList == null)
+            return false;
+
+        if (dbToDoList.IsDelete == true)
             return false;
 
         _mapper.Map(todolistDTO, dbToDoList);
@@ -68,7 +74,6 @@ public class ToDoListManager : IToDoListManager
         _todolistRepo.DeleteById(id);
         _todolistRepo.SaveChanges();
     }
-
 
     #endregion
 }

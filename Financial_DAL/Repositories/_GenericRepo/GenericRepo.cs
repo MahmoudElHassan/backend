@@ -1,4 +1,6 @@
-﻿namespace Financial_DAL;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace Financial_DAL;
 
 public class GenericRepo<TEntity> : IGenericRepo<TEntity> where TEntity : class
 {
@@ -60,6 +62,7 @@ public class GenericRepo<TEntity> : IGenericRepo<TEntity> where TEntity : class
             _context.Set<TEntity>().Remove(entityToDelete);
         }
     }
+
 
     public void SaveChanges()
     {

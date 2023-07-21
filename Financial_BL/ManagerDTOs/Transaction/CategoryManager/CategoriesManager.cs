@@ -2,7 +2,7 @@
 using Financial_BL.DTOs;
 using Financial_DAL;
 
-namespace Financial_BL;
+namespace Financial_BL.ManagerDTOs.Transaction.CategoryManager;
 
 public class CategoriesManager : ICategoriesManager
 {
@@ -22,7 +22,7 @@ public class CategoriesManager : ICategoriesManager
     #region Method
     public List<ReadCateoriesDTOS> GetAll()
     {
-        var dbCaetgory = _categoriesRepo.GetAll();
+        var dbCaetgory = _categoriesRepo.GetAll().Where(d => d.IsDelete == false);
 
         return _mapper.Map<List<ReadCateoriesDTOS>>(dbCaetgory);
     }
@@ -41,6 +41,7 @@ public class CategoriesManager : ICategoriesManager
     {
         var dbModel = _mapper.Map<Category>(category);
         dbModel.CategoryId = Guid.NewGuid();
+        dbModel.IsDelete = false;
 
         _categoriesRepo.Add(dbModel);
         _categoriesRepo.SaveChanges();
@@ -53,6 +54,9 @@ public class CategoriesManager : ICategoriesManager
         var dbCategory = _categoriesRepo.GetById(categoyDto.CategoryId);
 
         if (dbCategory == null)
+            return false;
+
+        if (dbCategory.IsDelete == true)
             return false;
 
         _mapper.Map(categoyDto, dbCategory);
@@ -68,5 +72,6 @@ public class CategoriesManager : ICategoriesManager
         _categoriesRepo.DeleteById(id);
         _categoriesRepo.SaveChanges();
     }
+
     #endregion
 }

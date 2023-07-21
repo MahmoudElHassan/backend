@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Financial_BL;
 using Financial_BL.DTOs;
+using Financial_BL.ManagerDTOs.Transaction.CategoryManager;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Financial.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/")]
 [ApiController]
 public class CategoriesController : ControllerBase
 {
@@ -19,15 +19,15 @@ public class CategoriesController : ControllerBase
         _categoriesManager = categoriesManager;
     }
 
-    // GET: api/Transactions
-    [HttpGet]
+    // GET: api/GetAllCategories
+    [HttpGet("GetAllCategories")]
     public ActionResult<IEnumerable<ReadCateoriesDTOS>> GetCategories()
     {
         return _categoriesManager.GetAll();
     }
 
-    // GET: api/Transactions/5
-    [HttpGet("{id}")]
+    // GET: api/GetCategoriesById/5
+    [HttpGet("GetCategoriesById/{id}")]
     public ActionResult<ReadCateoriesDTOS> GetCategoryById(Guid id)
     {
         var cateory = _categoriesManager.GetById(id);
@@ -40,8 +40,8 @@ public class CategoriesController : ControllerBase
         return cateory;
     }
 
-    // POST: api/Transactions
-    [HttpPost]
+    // POST: api/AddCategories
+    [HttpPost("AddCategories")]
     public ActionResult<ReadCateoriesDTOS> AddCategory(AddCateoriesDTOS addCateoriesDTOS)
     {
         var readCateoriesDTOS = _categoriesManager.Add(addCateoriesDTOS);
@@ -49,8 +49,8 @@ public class CategoriesController : ControllerBase
         return CreatedAtAction("GetCategoryById", new { id = readCateoriesDTOS.CategoryId }, readCateoriesDTOS);
     }
 
-    // PUT: api/Transactions/5
-    [HttpPut]
+    // PUT: api/EditCategories/5
+    [HttpPut("EditCategories")]
     public IActionResult EditCatoegory( UpdateCateoriesDTOS cateory)
     {
         //if (id != cateory.CategoryId)
@@ -68,12 +68,13 @@ public class CategoriesController : ControllerBase
         return NotFound();
     }
 
-    // DELETE: api/Transactions/5
-    [HttpDelete("{id}")]
+    // DELETE: api/DeleteCategories/5
+    [HttpDelete("DeleteCategories/{id}")]
     public async Task<IActionResult> DeleteCategory(Guid id)
     {
         _categoriesManager.Delete(id);
 
         return NoContent();
     }
+
 }

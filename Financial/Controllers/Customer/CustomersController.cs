@@ -1,12 +1,14 @@
 ﻿using Financial_BL;
 using Financial_BL.DTOs;
+using Financial_BL.ManagerDTOs;
 using Microsoft.AspNetCore.Mvc;
+using System.Transactions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Financial.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/")]
 [ApiController]
 public class CustomersController : ControllerBase
 {
@@ -18,15 +20,15 @@ public class CustomersController : ControllerBase
     }
 
 
-    // GET: api/<CustomersController>
-    [HttpGet]
+    // GET: api/GetAllCustomers
+    [HttpGet("GetAllCustomers")]
     public ActionResult<IEnumerable<ReadCustomersDTOs>> GetCustomers()
     {
         return _customersManager.GetAll();
     }
 
-    // GET api/<CustomersController>/5
-    [HttpGet("{id}")]
+    // GET api/GetCustomersById/5
+    [HttpGet("GetCustomersById/{id}")]
     public ActionResult<ReadCustomersDTOs> GetCustomerById(Guid id)
     {
         var customer = _customersManager.GetById(id);
@@ -39,8 +41,8 @@ public class CustomersController : ControllerBase
         return customer;
     }
 
-    // POST api/<CustomersController>
-    [HttpPost]
+    // POST api/AddCustomers
+    [HttpPost("AddCustomers")]
     public ActionResult<ReadCustomersDTOs> AddCustomer(AddCustomersDTOs addCustomersDTOS)
     {
         var readCustomersDTOS = _customersManager.Add(addCustomersDTOS);
@@ -48,8 +50,8 @@ public class CustomersController : ControllerBase
         return CreatedAtAction("GetCustomerById", new { id = readCustomersDTOS.CustomerId }, readCustomersDTOS);
     }
 
-    // PUT api/<CustomersController>
-    [HttpPut]
+    // PUT api/EditCustomers
+    [HttpPut("EditCustomers")]
     public IActionResult EditCustomer(UpdateCustomersDTOs customer)
     {
         //if (id != cateory.CategoryId)
@@ -67,12 +69,13 @@ public class CustomersController : ControllerBase
         return NotFound();
     }
 
-    // DELETE api/<CustomersController>/5
-    [HttpDelete("{id}")]
+    // DELETE api/DeleteCustomers/5
+    [HttpDelete("DeleteCustomers/{id}")]
     public async Task<IActionResult> DeleteCustomer(Guid id)
     {
         _customersManager.Delete(id);
 
         return NoContent();
     }
+
 }

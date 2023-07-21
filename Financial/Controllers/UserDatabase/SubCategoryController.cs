@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Financial.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/")]
 [ApiController]
 public class SubCategoryController : Controller
 {
@@ -15,15 +15,15 @@ public class SubCategoryController : Controller
     }
 
 
-    // GET: api/<SubCategoryController>
-    [HttpGet]
+    // GET: api/GetAllSubCategory
+    [HttpGet("GetAllSubCategory")]
     public ActionResult<IEnumerable<ReadSubCategoryDTO>> GetSubCategory()
     {
         return _subCategoryManager.GetAll();
     }
 
-    // GET: api/<SubCategoryController>/5
-    [HttpGet("{id:int}")]
+    // GET: api/GetSubCategoryById/5
+    [HttpGet("GetSubCategoryById/{id:int}")]
     public ActionResult<ReadSubCategoryDTO> GetSubCategoryById(int id)
     {
         var subCaategory = _subCategoryManager.GetByintId(id);
@@ -36,8 +36,8 @@ public class SubCategoryController : Controller
         return subCaategory;
     }
 
-    // POST: api/<SubCategoryController>
-    [HttpPost]
+    // POST: api/AddSubCategory
+    [HttpPost("AddSubCategory")]
     public ActionResult<ReadSubCategoryDTO> AddSubCategory(AddSubCategoryDTO addSubCategoryDTOS)
     {
         var readSubCategoryDTOS = _subCategoryManager.Add(addSubCategoryDTOS);
@@ -45,8 +45,8 @@ public class SubCategoryController : Controller
         return CreatedAtAction("GetSubCategoryById", new { id = readSubCategoryDTOS.SCategoryId }, readSubCategoryDTOS);
     }
 
-    // PUT: api/<SubCategoryController>
-    [HttpPut]
+    // PUT: api/EditSubCategory
+    [HttpPut("EditSubCategory")]
     public IActionResult EditSubCategory(UpdateSubCategoryDTO subCategory)
     {
         var subCategoryDTO = _subCategoryManager.Update(subCategory);
@@ -59,13 +59,14 @@ public class SubCategoryController : Controller
         return NotFound();
     }
 
-    // DELETE: api/<SubCategoryController>/5
+    // DELETE: api/DeleteSubCategory/5
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete("DeleteSubCategory/{id:int}")]
     public async Task<IActionResult> DeleteSubCategory(int id)
     {
         _subCategoryManager.Delete(id);
 
         return NoContent();
     }
+
 }

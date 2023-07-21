@@ -1,4 +1,6 @@
 ﻿using Financial_BL;
+using Financial_BL.ManagerDTOs;
+using Financial_BL.ManagerDTOs.Transaction.CategoryManager;
 using Financial_DAL;
 using Microsoft.EntityFrameworkCore;
 

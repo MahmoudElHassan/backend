@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Financial.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class ToDoListController : ControllerBase
     {
@@ -18,16 +18,15 @@ namespace Financial.Controllers
         }
 
 
-
-        // GET: api/<ToDoListController>
-        [HttpGet]
+        // GET: api/GetAllToDoList
+        [HttpGet("GetAllToDoList")]
         public ActionResult<IEnumerable<ReadToDoListsDTO>> GetToDoLists()
         {
             return _todolistManager.GetAll();
         }
 
-        // GET api/<ToDoListController>/5
-        [HttpGet("{id}")]
+        // GET api/GetToDoListById/5
+        [HttpGet("GetToDoListById/{id}")]
         public ActionResult<ReadToDoListsDTO> GetToDoListById(Guid id)
         {
             var todolist = _todolistManager.GetById(id);
@@ -40,8 +39,8 @@ namespace Financial.Controllers
             return todolist;
         }
 
-        // POST api/<ToDoListController>
-        [HttpPost]
+        // POST api/AddToDoList
+        [HttpPost("AddToDoList")]
         public ActionResult<ReadToDoListsDTO> AddToDoList(AddToDoListsDTO addToDoListDTOS)
         {
             var readToDoListTOS = _todolistManager.Add(addToDoListDTOS);
@@ -49,8 +48,8 @@ namespace Financial.Controllers
             return CreatedAtAction("GetToDoListById", new { id = readToDoListTOS.ListId }, readToDoListTOS);
         }
 
-        // PUT api/<ToDoListController>/5
-        [HttpPut]
+        // PUT api/EditToDoList/5
+        [HttpPut("EditToDoList")]
         public IActionResult EditToDoList(UpdateToDoListsDTO todolist)
         {
             //if (id != cateory.CategoryId)
@@ -68,13 +67,14 @@ namespace Financial.Controllers
             return NotFound();
         }
 
-        // DELETE api/<ToDoListController>/5
-        [HttpDelete("{id}")]
+        // DELETE api/DeleteToDoList/5
+        [HttpDelete("DeleteToDoList/{id}")]
         public async Task<IActionResult> DeleteToDoList(Guid id)
         {
             _todolistManager.Delete(id);
 
             return NoContent();
         }
+
     }
 }
