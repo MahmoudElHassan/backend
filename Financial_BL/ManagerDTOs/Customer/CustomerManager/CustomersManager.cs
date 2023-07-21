@@ -41,7 +41,6 @@ public class CustomersManager : ICustomersManager
     {
         var dbModel = _mapper.Map<Customer>(customer);
         dbModel.CustomerId = Guid.NewGuid();
-        dbModel.IsDelete = false;
 
         _customersRepo.Add(dbModel);
         _customersRepo.SaveChanges();

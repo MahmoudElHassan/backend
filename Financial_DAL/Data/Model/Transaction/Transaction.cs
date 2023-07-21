@@ -38,7 +38,7 @@ public class Transaction
     [Range(0, 100)]
     public int Taxes { get; set; } = 0;
 
-    public bool IsDelete { get; set; } = false;
+    public bool IsDelete { get; set; }
 
     [DataType(DataType.Date)]
     [Required]

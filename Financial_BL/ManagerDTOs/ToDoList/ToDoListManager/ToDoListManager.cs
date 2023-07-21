@@ -43,7 +43,6 @@ public class ToDoListManager : IToDoListManager
         var dbModel = _mapper.Map<ToDoList>(ToDoList);
         dbModel.ListId = Guid.NewGuid();
         dbModel.Statu = false;
-        dbModel.IsDelete = false;
 
         _todolistRepo.Add(dbModel);
         _todolistRepo.SaveChanges();

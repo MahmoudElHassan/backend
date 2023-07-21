@@ -41,7 +41,6 @@ public class CategoriesManager : ICategoriesManager
     {
         var dbModel = _mapper.Map<Category>(category);
         dbModel.CategoryId = Guid.NewGuid();
-        dbModel.IsDelete = false;
 
         _categoriesRepo.Add(dbModel);
         _categoriesRepo.SaveChanges();

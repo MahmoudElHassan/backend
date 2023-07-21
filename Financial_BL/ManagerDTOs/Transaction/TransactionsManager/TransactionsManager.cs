@@ -41,7 +41,6 @@ public class TransactionsManager : ITransactionsManager
     {
         var dbModel = _mapper.Map<Transaction>(transaction);
         dbModel.TransactionId = Guid.NewGuid();
-        dbModel.IsDelete= false;
 
         //if (dbModel.Description == null || dbModel.Address2 == null || dbModel.Taxes == null)
         //{
