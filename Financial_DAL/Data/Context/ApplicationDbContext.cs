@@ -28,12 +28,12 @@ public class ApplicationDbContext : DbContext
         {
             var entity = entry.Entity;
 
-            if (entry.State == EntityState.Added)
-                entity.GetType().GetProperty("IsDelete")?.SetValue(entity, false);
-
             if (entry.State == EntityState.Deleted) //&& entity is ISoftDelete
                 entry.State = EntityState.Modified;
-                entity.GetType().GetProperty("IsDelete").SetValue(entity, true);
+                entity.GetType().GetProperty("IsDelete")?.SetValue(entity, true);
+
+            if (entry.State == EntityState.Added)
+                entity.GetType().GetProperty("IsDelete")?.SetValue(entity, false);
         }
         return base.SaveChanges();
     }
