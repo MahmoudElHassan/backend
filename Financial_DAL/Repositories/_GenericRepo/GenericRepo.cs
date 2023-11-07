@@ -21,12 +21,12 @@ public class GenericRepo<TEntity> : IGenericRepo<TEntity> where TEntity : class
         return _context.Set<TEntity>().ToList();
     }
 
-    public TEntity? GetById(Guid id)
+    public TEntity GetById(Guid id)
     {
         return _context.Set<TEntity>().Find(id);
     }
 
-    public TEntity? GetByintId(int id)
+    public TEntity GetByintId(int id)
     {
         return _context.Set<TEntity>().Find(id);
     }

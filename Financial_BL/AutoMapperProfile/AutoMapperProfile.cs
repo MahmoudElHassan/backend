@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
-using Financial_BL.DTOs;
-using Financial_BL.DTOs.SalesDTO;
-using Financial_BL.DTOs.TransactionsDTO;
 using Financial_DAL;
 
 namespace Financial_BL;
 
 public class AutoMapperProfile : Profile
 {
-	public AutoMapperProfile()
-	{
+    public AutoMapperProfile()
+    {
         CreateMap<Transaction, ReadTransactionDTO>();
         CreateMap<UpdateTransactionDTO, Transaction>();
         CreateMap<AddTrasnactionDTO, Transaction>();
@@ -18,13 +15,21 @@ public class AutoMapperProfile : Profile
         CreateMap<UpdateCateoriesDTOS, Category>();
         CreateMap<AddCateoriesDTOS, Category>();
 
-        CreateMap<Customer, ReadCustomersDTOs>();
-        CreateMap<UpdateCustomersDTOs, Customer>();
-        CreateMap<AddCustomersDTOs, Customer>();
+        CreateMap<Category, ReadCateoriesDTOS>();
+        CreateMap<UpdateCateoriesDTOS, Category>();
+        CreateMap<AddCateoriesDTOS, Category>();
+
+        CreateMap<Payment, ReadPaymentDTO>();
+        CreateMap<UpdatePaymentDTO, Payment>();
+        CreateMap<AddPaymentDTO, Payment>();
 
         CreateMap<ToDoList, ReadToDoListsDTO>();
-        CreateMap<UpdateToDoListsDTO,ToDoList>();
+        CreateMap<UpdateToDoListsDTO, ToDoList>();
         CreateMap<AddToDoListsDTO, ToDoList>();
+
+        CreateMap<Project, ReadProjectDTO>();
+        CreateMap<UpdateProjectDTO, Project>();
+        CreateMap<AddProjectDTO, Project>();
 
         CreateMap<UserDatabase, ReadBoysDTO>();
         CreateMap<UpdateBoysDTO, UserDatabase>();
@@ -42,6 +47,22 @@ public class AutoMapperProfile : Profile
         CreateMap<UpdateSubCategoryDTO, SubCategory>();
         CreateMap<AddSubCategoryDTO, SubCategory>();
 
+        CreateMap<Goal, ReadGoalDTO>();
+        CreateMap<UpdateGoalDTO, Goal>();
+        CreateMap<AddGoalDTO, Goal>();
+
+        CreateMap<Area, ReadAreaDTO>();
+        CreateMap<UpdateAreaDTO, Area>();
+        CreateMap<AddAreaDTO, Area>();
+
+        CreateMap<Calender, ReadCalenderDTO>();
+        CreateMap<UpdateCalenderDTO, Calender>();
+        CreateMap<AddCalenderDTO, Calender>();
+
+        CreateMap<Habit, ReadHabitDTO>();
+        CreateMap<UpdateHabitDTO, Habit>();
+        CreateMap<AddHabitDTO, Habit>();
+
         CreateMap<Sale, ReadSaleDTO>();
 
         CreateMap<Statu, ReadStatusDTOs>();
@@ -50,7 +71,7 @@ public class AutoMapperProfile : Profile
 
         CreateMap<Priority, ReadPriorityDTO>();
 
-        CreateMap<Assign,ReadAssignsDTO>();
+        CreateMap<Assign, ReadAssignsDTO>();
 
     }
 }

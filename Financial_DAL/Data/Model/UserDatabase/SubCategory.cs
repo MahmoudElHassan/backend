@@ -14,6 +14,6 @@ public class SubCategory
     public int MCategory_Id { get; set; }
     public bool IsDelete { get; set; }
 
-    public virtual MainCategory? MainCategoryies { get; set; }
+    public virtual MainCategory MainCategoryies { get; set; }
     public virtual ICollection<UserDatabase> UserDatabases { get; set; } = new HashSet<UserDatabase>();
 }

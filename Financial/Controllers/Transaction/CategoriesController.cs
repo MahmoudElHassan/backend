@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Financial_BL.DTOs;
-using Financial_BL.ManagerDTOs.Transaction.CategoryManager;
+using Financial_BL;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

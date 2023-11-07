@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Financial_BL.DTOs.SalesDTO;
 using Financial_DAL;
 
 namespace Financial_BL;

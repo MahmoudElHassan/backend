@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Financial_BL.DTOs;
 using Financial_DAL;
 
-namespace Financial_BL.ManagerDTOs.Transaction.CategoryManager;
+namespace Financial_BL;
 
 public class CategoriesManager : ICategoriesManager
 {
@@ -55,8 +54,6 @@ public class CategoriesManager : ICategoriesManager
         if (dbCategory == null)
             return false;
 
-        if (dbCategory.IsDelete == true)
-            return false;
 
         _mapper.Map(categoyDto, dbCategory);
 

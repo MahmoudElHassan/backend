@@ -10,13 +10,13 @@ public class ToDoList_NUnitTest
         var todolist = new AddToDoListsDTO();
 
         todolist.Description = "test1";
-        todolist.Date = DateTime.Now;
+        //todolist.Date = DateTime.Now;
         todolist.Statu = true;
         todolist.Assign_Id = 2;
         todolist.Priority_Id = 2;
 
         Assert.AreEqual(todolist.Description, todolist.Description);
-        Assert.AreEqual(todolist.Date, todolist.Date);
+        //Assert.AreEqual(todolist.Date, todolist.Date);
         Assert.AreEqual(todolist.Statu, todolist.Statu);
         Assert.AreEqual(todolist.Assign_Id, todolist.Assign_Id);
         Assert.AreEqual(todolist.Priority_Id, todolist.Priority_Id);
@@ -28,13 +28,13 @@ public class ToDoList_NUnitTest
         var todolist = new UpdateToDoListsDTO();
 
         todolist.Description = "test2";
-        todolist.Date = DateTime.Now;
+        //todolist.Date = DateTime.Now;
         todolist.Statu = false;
         todolist.Assign_Id = 3;
         todolist.Priority_Id = 2;
 
         Assert.AreEqual(todolist.Description, todolist.Description);
-        Assert.AreEqual(todolist.Date, todolist.Date);
+        //Assert.AreEqual(todolist.Date, todolist.Date);
         Assert.AreEqual(todolist.Statu, todolist.Statu);
         Assert.AreEqual(todolist.Assign_Id, todolist.Assign_Id);
         Assert.AreEqual(todolist.Priority_Id, todolist.Priority_Id);

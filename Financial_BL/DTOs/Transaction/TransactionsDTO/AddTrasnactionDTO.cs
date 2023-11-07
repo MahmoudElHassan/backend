@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Financial_BL.DTOs.TransactionsDTO;
+namespace Financial_BL;
 
 public class AddTrasnactionDTO
 {
@@ -24,8 +24,7 @@ public class AddTrasnactionDTO
     //[MaxLength(10)]
     public int Zip { get; set; } = 0;
 
-    public bool IsDelete { get; set; }
-
+    public bool Paid { get; set; }
 
     [MaxLength(20)]
     public string Country { get; set; } = string.Empty;

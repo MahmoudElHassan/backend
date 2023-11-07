@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Financial_DAL;
+using System.ComponentModel.DataAnnotations;
 
-namespace Financial_BL.DTOs.TransactionsDTO;
+namespace Financial_BL;
 
 public class ReadTransactionDTO
 {
@@ -20,12 +21,23 @@ public class ReadTransactionDTO
 
     public int Zip { get; set; } = 0;
 
+    public string InvoiceID { get; set; }
+
+    public bool Paid { get; set; }
+
     public bool IsDelete { get; set; }
 
 
     public string Country { get; set; } = string.Empty;
 
-    public DateTime Date { get; set; } = DateTime.Now;
+    public DateTime Date { get; set; }
 
     public Guid Category_Id { get; set; }
+
+    public virtual List<ReadPaymentDTO> Payments { get; set; }
+
+    //public ReadTransactionDTO()
+    //{
+    //    Payments= new List<ReadPaymentDTO>();
+    //}
 }

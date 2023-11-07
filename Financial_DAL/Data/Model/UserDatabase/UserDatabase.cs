@@ -27,9 +27,9 @@ public class UserDatabase
 
     [ForeignKey("SubCategories")]
     public int SCategory_Id { get; set; }
-    public virtual SubCategory? SubCategories { get; set; }
+    public virtual SubCategory SubCategories { get; set; }
 
     [ForeignKey("MainCategories")]
     public int MCategory_Id { get; set; }
-    public virtual MainCategory? MainCategories { get; set; }
+    public virtual MainCategory MainCategories { get; set; }
 }

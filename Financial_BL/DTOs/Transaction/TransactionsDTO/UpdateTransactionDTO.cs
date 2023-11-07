@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Financial_DAL;
+using System.ComponentModel.DataAnnotations;
 
-namespace Financial_BL.DTOs.TransactionsDTO;
+namespace Financial_BL;
 
 public class UpdateTransactionDTO
 {
@@ -26,13 +27,15 @@ public class UpdateTransactionDTO
     //[MaxLength(10)]
     public int Zip { get; set; } = 0;
 
-    public bool IsDelete { get; set; }
+    public string InvoiceID { get; set; }
 
+    public bool Paid { get; set; }
 
     [MaxLength(20)]
     public string Country { get; set; } = string.Empty;
 
-    public DateTime Date { get; set; } = DateTime.Now;
+    public DateTime Date { get; set; }
     
     public Guid Category_Id { get; set; }
+
 }

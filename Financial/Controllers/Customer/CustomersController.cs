@@ -1,8 +1,5 @@
 ﻿using Financial_BL;
-using Financial_BL.DTOs;
-using Financial_BL.ManagerDTOs;
 using Microsoft.AspNetCore.Mvc;
-using System.Transactions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -54,11 +51,6 @@ public class CustomersController : ControllerBase
     [HttpPut("EditCustomers")]
     public IActionResult EditCustomer(UpdateCustomersDTOs customer)
     {
-        //if (id != cateory.CategoryId)
-        //{
-        //    return BadRequest();
-        //}
-
         var customerDTO = _customersManager.Update(customer);
 
         if (customerDTO)

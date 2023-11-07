@@ -1,8 +1,5 @@
 ﻿using Financial_BL;
-using Financial_BL.DTOs.TransactionsDTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Transactions;
 
 namespace Financial.Controllers;
 

@@ -11,5 +11,5 @@ public class Source
     [Required]
     public string SourceName { get; set; } = string.Empty;
 
-    public virtual ICollection<Customer> Customers { get; set; } = new HashSet<Customer>();
+    //public virtual ICollection<Customer> Customers { get; set; } = new HashSet<Customer>();
 }

@@ -10,5 +10,5 @@ public class Sale
     [Required]
     public string Category_Type { get; set; } = string.Empty;
 
-    public virtual ICollection<Category> Categories { get; set; } = new HashSet<Category>();
+    //public virtual ICollection<Category> Categories { get; set; } = new HashSet<Category>();
 }

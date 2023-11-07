@@ -38,14 +38,28 @@ public class Transaction
     [Range(0, 100)]
     public int Taxes { get; set; } = 0;
 
+    public string InvoiceID { get; set; }
+
+    //public IEnumerable<string> Payment { get; set; }
+
+    public bool Paid { get; set; }
+
     public bool IsDelete { get; set; }
 
     [DataType(DataType.Date)]
     [Required]
     //[OpenDateValidation]
-    public DateTime Date { get; set; } = DateTime.Now;
+    public DateTime Date { get; set; } = new DateTime();
 
     [ForeignKey("Categories")]
     public Guid Category_Id { get; set; }
-    public virtual Category? Categories { get; set; }
+    public virtual Category Categories { get; set; }
+
+    public virtual List<Payment> Payments { get; set; }
+
+    //public Transaction()
+    //{
+    //    Payments= new List<Payment>();
+    //}
+
 }

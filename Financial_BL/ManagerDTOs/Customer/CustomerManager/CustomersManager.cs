@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Financial_BL.DTOs;
 using Financial_DAL;
 
-namespace Financial_BL.ManagerDTOs;
+namespace Financial_BL;
 
 public class CustomersManager : ICustomersManager
 {
@@ -53,9 +52,6 @@ public class CustomersManager : ICustomersManager
         var dbCustomer = _customersRepo.GetById(customerDto.CustomerId);
 
         if (dbCustomer == null)
-            return false;
-
-        if (dbCustomer.IsDelete == true)
             return false;
 
         _mapper.Map(customerDto, dbCustomer);

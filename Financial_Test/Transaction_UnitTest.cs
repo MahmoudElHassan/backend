@@ -1,4 +1,4 @@
-using Financial_BL.DTOs.TransactionsDTO;
+using Financial_BL;
 
 namespace Financial_NUnitTest;
 
@@ -33,7 +33,7 @@ public class Transaction_UnitTest
         transaction.Amount = 100;
         transaction.Address1 = "21 victor street";
         transaction.State = "Alexandria";
-        transaction.Date = DateTime.Now;
+        //transaction.Date = DateTime.Now;
         transaction.Category_Id = Guid.Parse("0190b796-32a4-4ab8-a106-38ccbf3274ed");
 
         Assert.AreEqual(transaction.Description, transaction.Description);

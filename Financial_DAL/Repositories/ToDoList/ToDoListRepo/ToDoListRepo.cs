@@ -14,5 +14,10 @@ public class ToDoListRepo : GenericRepo<ToDoList>, IToDoListRepo
     #endregion
 
     #region Method
+
+    public List<ToDoList> GetToDoByProject(int projectId)
+    {
+        return _context.Set<ToDoList>().Where(x => x.Project_Id == projectId).ToList();
+    }
     #endregion
 }

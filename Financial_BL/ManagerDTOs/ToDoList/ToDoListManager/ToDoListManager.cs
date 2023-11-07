@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Financial_BL.DTOs.TransactionsDTO;
 using Financial_DAL;
-using System.Data.Common;
+using Financial_DAL.Migrations;
 
 namespace Financial_BL;
 
@@ -25,10 +24,29 @@ public class ToDoListManager : IToDoListManager
     {
         var dbToDoList = _todolistRepo.GetAll().Where(d => d.IsDelete == false);
 
+        foreach (var item in dbToDoList)
+        {
+            item.Due = DueTime(item.EndDate);
+            item.TodayTask = GetTodayTask(item.StartDate, item.EndDate);
+        }
+
         return _mapper.Map<List<ReadToDoListsDTO>>(dbToDoList);
     }
 
-    public ReadToDoListsDTO? GetById(Guid id)
+    public List<ReadToDoListsDTO> GetTODoByProject(int projectId)
+    {
+        var dbToDoList = _todolistRepo.GetToDoByProject(projectId).Where(d => d.IsDelete == false);
+
+        foreach (var item in dbToDoList)
+        {
+            item.Due = DueTime(item.EndDate);
+            item.TodayTask = GetTodayTask(item.StartDate, item.EndDate);
+        }
+
+        return _mapper.Map<List<ReadToDoListsDTO>>(dbToDoList);
+    }
+
+    public ReadToDoListsDTO GetById(Guid id)
     {
         var dbToDoList = _todolistRepo.GetById(id);
 
@@ -42,7 +60,11 @@ public class ToDoListManager : IToDoListManager
     {
         var dbModel = _mapper.Map<ToDoList>(ToDoList);
         dbModel.ListId = Guid.NewGuid();
-        dbModel.Statu = false;
+        dbModel.StartDate = ToDoList.StartDate.ToUniversalTime().Date;
+        dbModel.EndDate = ToDoList.EndDate.ToUniversalTime().Date;
+
+        dbModel.Due = DueTime(dbModel.EndDate);
+        dbModel.TodayTask = GetTodayTask(dbModel.StartDate, dbModel.EndDate);
 
         _todolistRepo.Add(dbModel);
         _todolistRepo.SaveChanges();
@@ -57,8 +79,11 @@ public class ToDoListManager : IToDoListManager
         if (dbToDoList == null)
             return false;
 
-        if (dbToDoList.IsDelete == true)
-            return false;
+        dbToDoList.StartDate = dbToDoList.StartDate.ToUniversalTime().Date;
+        dbToDoList.EndDate = dbToDoList.EndDate.ToUniversalTime().Date;
+
+        dbToDoList.Due = DueTime(dbToDoList.EndDate);
+        dbToDoList.TodayTask = GetTodayTask(dbToDoList.StartDate, dbToDoList.EndDate);
 
         _mapper.Map(todolistDTO, dbToDoList);
 
@@ -74,5 +99,33 @@ public class ToDoListManager : IToDoListManager
         _todolistRepo.SaveChanges();
     }
 
+    #endregion
+
+    #region Provate Methods
+    private bool DueTime(DateTime endDate)
+    {
+        DateTime date = DateTime.UtcNow;
+        if (endDate.Date >= date.Date)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool GetTodayTask(DateTime startDate, DateTime endDate)
+    {
+        DateTime date = DateTime.UtcNow;
+        if (startDate.Date <= date.Date && date.Date <= endDate.Date)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     #endregion
 }

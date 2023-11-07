@@ -41,7 +41,6 @@ public class SubCategoryManager : ISubCategoryManager
     {
         var dbModel = _mapper.Map<SubCategory>(subCategory);
         //dbModel.MCategoryId = Guid.NewGuid();
-        dbModel.IsDelete = false;
 
         _subCategoryRepo.Add(dbModel);
         _subCategoryRepo.SaveChanges();
@@ -54,9 +53,6 @@ public class SubCategoryManager : ISubCategoryManager
         var dbSubCategory = _subCategoryRepo.GetByintId(subCategoryDTO.SCategoryId);
 
         if (dbSubCategory == null)
-            return false;
-
-        if (dbSubCategory.IsDelete == true)
             return false;
 
         _mapper.Map(subCategoryDTO, dbSubCategory);

@@ -14,9 +14,9 @@ public class Category
 
     public bool IsDelete { get; set; }
 
-    public virtual ICollection<Transaction> Transactions { get; set; } = new HashSet<Transaction>();
+    //public virtual ICollection<Transaction> Transactions { get; set; } = new HashSet<Transaction>();
 
     [ForeignKey("Sales")]
     public int Sale_Id { get; set; }
-    public virtual Sale? Sales { get; set; }
+    public virtual Sale Sales { get; set; }
 }

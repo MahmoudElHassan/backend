@@ -11,5 +11,5 @@ public class Statu
     [Required]
     public string StatutName { get; set;} = string.Empty;
 
-    public virtual ICollection<Customer> Customers { get; set; } = new HashSet<Customer>();
+    //public virtual ICollection<Customer> Customers { get; set; } = new HashSet<Customer>();
 }

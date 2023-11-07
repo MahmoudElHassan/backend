@@ -1,6 +1,4 @@
 ﻿using Financial_BL;
-using Financial_BL.ManagerDTOs;
-using Financial_BL.ManagerDTOs.Transaction.CategoryManager;
 using Financial_DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,11 +15,12 @@ builder.Services.AddSwaggerGen();
 var connectinString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectinString));
 
-builder.Services.AddAutoMapper (typeof(AutoMapperProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
 #region Reposatories
-builder.Services.AddScoped<ITransactionsRepo,TransactionsRepo>();
+builder.Services.AddScoped<ITransactionsRepo, TransactionsRepo>();
 builder.Services.AddScoped<ICategoriesRepo, CategoriesRepo>();
+builder.Services.AddScoped<IPaymentRepo, PaymentRepo>();
 builder.Services.AddScoped<ISalesRepo, SalesRepo>();
 builder.Services.AddScoped<ICustomerRepo, CustomerRepo>();
 builder.Services.AddScoped<IStatusRepo, StatusRepo>();
@@ -29,24 +28,35 @@ builder.Services.AddScoped<ISourcesRepo, SourcesRepo>();
 builder.Services.AddScoped<IToDoListRepo, ToDoListRepo>();
 builder.Services.AddScoped<IPriorityrepo, PriorityRepo>();
 builder.Services.AddScoped<IAssignRepo, AssignRepo>();
+builder.Services.AddScoped<IProjectRepo, ProjectRepo>();
 builder.Services.AddScoped<IMainCatregoryRepo, MainCategoryRepo>();
 builder.Services.AddScoped<ISubCategoryRepo, SubCategoryRepo>();
 builder.Services.AddScoped<IUserDatabaseRepo, UserDatabaseRepo>();
+builder.Services.AddScoped<IGoalRepo, GoalRepo>();
+builder.Services.AddScoped<IAreaRepo, AreatRepo>();
+builder.Services.AddScoped<ICalenderRepo, CalenderRepo>();
+builder.Services.AddScoped<IHabitRepo, HabitRepo>();
 #endregion
 
 #region Managers
 builder.Services.AddScoped<ITransactionsManager, TransactionsManager>();
 builder.Services.AddScoped<ICategoriesManager, CategoriesManager>();
+builder.Services.AddScoped<IPaymentManager, PaymentManager>();
 builder.Services.AddScoped<ICustomersManager, CustomersManager>();
 builder.Services.AddScoped<ISalesManager, SalesManager>();
 builder.Services.AddScoped<ISourcesManager, SourcesManager>();
 builder.Services.AddScoped<IStatusManager, StatusManager>();
 builder.Services.AddScoped<IToDoListManager, ToDoListManager>();
 builder.Services.AddScoped<IPriorityManager, PriorityManager>();
-builder.Services.AddScoped<IAssignManager,  AssignManager>();
+builder.Services.AddScoped<IAssignManager, AssignManager>();
+builder.Services.AddScoped<IProjectManager, ProjectManager>();
 builder.Services.AddScoped<IMainCategoryManager, MainCategoryManager>();
 builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>();
 builder.Services.AddScoped<IUserDatabaseManager, UserDatabaseManager>();
+builder.Services.AddScoped<IGoalManager, GoalManager>();
+builder.Services.AddScoped<IAreaManager, AreaManager>();
+builder.Services.AddScoped<ICalenderManager, CalenderManager>();
+builder.Services.AddScoped<IHabitManager, HabitManager>();
 #endregion
 
 #region Allow Cors

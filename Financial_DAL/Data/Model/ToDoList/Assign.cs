@@ -9,6 +9,6 @@ public class Assign
 
     public string AssignedTo { get; set; } = string.Empty;
 
-    public virtual ICollection<ToDoList> ToDoLists { get; set; } = new HashSet<ToDoList>();
+    //public virtual ICollection<ToDoList> ToDoLists { get; set; } = new HashSet<ToDoList>();
 
 }

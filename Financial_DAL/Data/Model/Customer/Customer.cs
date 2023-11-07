@@ -46,9 +46,9 @@ public class Customer
 
     [ForeignKey("Status")]
     public int Statu_Id { get; set; }
-    public virtual Statu? Status { get; set; }
+    public virtual Statu Status { get; set; }
 
     [ForeignKey("Sources")]
     public int Source_Id { get; set; }
-    public virtual Source? Sources { get; set; }
+    public virtual Source Sources { get; set; }
 }

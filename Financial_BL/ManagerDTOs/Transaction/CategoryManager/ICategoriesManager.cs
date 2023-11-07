@@ -1,6 +1,4 @@
-﻿using Financial_BL.DTOs;
-
-namespace Financial_BL.ManagerDTOs.Transaction.CategoryManager;
+﻿namespace Financial_BL;
 
 public interface ICategoriesManager
 {

@@ -51,7 +51,6 @@ public class UserDatabaseManager : IUserDatabaseManager
     {
         var dbModel = _mapper.Map<UserDatabase>(userDB);
         dbModel.UserId = Guid.NewGuid();
-        dbModel.IsDelete = false;
 
         _userDBRepo.Add(dbModel);
         _userDBRepo.SaveChanges();
@@ -63,7 +62,6 @@ public class UserDatabaseManager : IUserDatabaseManager
     {
         var dbModel = _mapper.Map<UserDatabase>(userDB);
         dbModel.UserId = Guid.NewGuid();
-        dbModel.IsDelete = false;
 
         _userDBRepo.Add(dbModel);
         _userDBRepo.SaveChanges();
@@ -76,9 +74,6 @@ public class UserDatabaseManager : IUserDatabaseManager
         var dbUserDB = _userDBRepo.GetById(userDbDTO.UserId);
 
         if (dbUserDB == null)
-            return false;
-
-        if (dbUserDB.IsDelete == true)
             return false;
 
         _mapper.Map(userDbDTO, dbUserDB);
@@ -94,9 +89,6 @@ public class UserDatabaseManager : IUserDatabaseManager
         var dbUserDB = _userDBRepo.GetById(userDbDTO.UserId);
 
         if (dbUserDB == null)
-            return false;
-
-        if (dbUserDB.IsDelete == true)
             return false;
 
         _mapper.Map(userDbDTO, dbUserDB);

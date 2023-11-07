@@ -1,4 +1,4 @@
-﻿using Financial_BL.DTOs.SalesDTO;
+﻿using Financial_BL;
 
 namespace Financial_BL;
 

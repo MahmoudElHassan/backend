@@ -1,4 +1,4 @@
-﻿namespace Financial_BL.DTOs.SalesDTO;
+﻿namespace Financial_BL;
 
 public class ReadSaleDTO
 {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Financial_BL.DTOs.TransactionsDTO;
 using Financial_BL;
 
 namespace Financial.Controllers;
@@ -8,14 +7,18 @@ namespace Financial.Controllers;
 [ApiController]
 public class TransactionsController : ControllerBase
 {
+    #region Field
     private readonly ITransactionsManager _transactionsManager;
+    #endregion
 
+    #region Ctor
     public TransactionsController(ITransactionsManager transactionsManager)
     {
         _transactionsManager = transactionsManager;
     }
+    #endregion
 
-
+    #region Methods
 
     // GET: api/GetAllTransactions
     [HttpGet("GetAllTransactions")]
@@ -24,7 +27,29 @@ public class TransactionsController : ControllerBase
         return _transactionsManager.GetAll();
     }
 
+    // GET: api/GetExpensesTransactions
+    [HttpGet("GetExpensesTransactions")]
+    public ActionResult<IEnumerable<ReadTransactionDTO>> GetExpensesTransactions()
+    {
+        return _transactionsManager.GetAllExpenses();
+    }
+
+    // GET: api/GetRevnueTransactions
+    [HttpGet("GetRevnueTransactions")]
+    public ActionResult<IEnumerable<ReadTransactionDTO>> GetRevnueTransactions()
+    {
+        return _transactionsManager.GetAllRevnue();
+    }
+
+    // GET: api/GetExpensesInOrder
+    //[HttpGet("GetExpensesInOrder")]
+    //public ActionResult<IEnumerable<ReadTransactionDTO>> GetExpensesInOrder()
+    //{
+    //    return _transactionsManager.GetExpensesInOrder();
+    //}
+
     // GET: api/GetTransactionsById/5
+
     [HttpGet("GetTransactionsById/{id}")]
     public ActionResult<ReadTransactionDTO> GetTransactionById(Guid id)
     {
@@ -51,11 +76,6 @@ public class TransactionsController : ControllerBase
     [HttpPut("EditTransactions")]
     public IActionResult EditTransaction(UpdateTransactionDTO transaction)
     {
-        //if (id != transaction.TransactionId)
-        //{
-        //    return BadRequest();
-        //}
-
         var transactionDTO = _transactionsManager.Update(transaction);
 
         if (transactionDTO)
@@ -75,4 +95,13 @@ public class TransactionsController : ControllerBase
         return NoContent();
     }
 
+
+    // GET: api/GetChart
+    [HttpGet("GetChart")]
+    public ActionResult<TransactionChart> GetChart(int year)
+    {
+        return _transactionsManager.GetChart(year);
+    }
+
+    #endregion
 }

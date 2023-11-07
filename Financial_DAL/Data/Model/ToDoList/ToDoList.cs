@@ -12,16 +12,23 @@ public class ToDoList
     [MaxLength(500)]
     public string Description { get; set; } = string.Empty;
     [Required]
-    public DateTime Date { get; set; } = DateTime.Now;
+    public DateTime StartDate { get; set; } = new DateTime();
+    public DateTime EndDate { get; set; } = new DateTime();
 
+    public bool TodayTask { get; set; }
+    public bool Due { get; set; }
     public bool IsDelete { get; set; }
 
     [ForeignKey("Priority")]
     public int Priority_Id { get; set; }
-    public virtual Priority? Priority { get; set; }
+    public virtual Priority Priority { get; set; }
 
     [ForeignKey("Assigns")]
     public int Assign_Id { get; set; }
-    public virtual Assign? Assigns { get; set; }
+    public virtual Assign Assigns { get; set; }
+
+    [ForeignKey("Projects")]
+    public int Project_Id { get; set; }
+    public virtual Project Projects { get; set; }
 
 }

@@ -1,6 +1,4 @@
-﻿using Financial_BL.DTOs.TransactionsDTO;
-
-namespace Financial_BL;
+﻿namespace Financial_BL;
 
 public interface IUserDatabaseManager
 {
