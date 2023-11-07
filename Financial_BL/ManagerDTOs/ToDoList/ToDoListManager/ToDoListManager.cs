@@ -42,7 +42,6 @@ public class ToDoListManager : IToDoListManager
     {
         var dbModel = _mapper.Map<ToDoList>(ToDoList);
         dbModel.ListId = Guid.NewGuid();
-        dbModel.Statu = false;
 
         _todolistRepo.Add(dbModel);
         _todolistRepo.SaveChanges();
@@ -57,8 +56,6 @@ public class ToDoListManager : IToDoListManager
         if (dbToDoList == null)
             return false;
 
-        if (dbToDoList.IsDelete == true)
-            return false;
 
         _mapper.Map(todolistDTO, dbToDoList);
 

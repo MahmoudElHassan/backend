@@ -40,7 +40,6 @@ public class MainCategoryManager : IMainCategoryManager
     {
         var dbModel = _mapper.Map<MainCategory>(mainCategory);
         //dbModel.MCategoryId = Guid.NewGuid();
-        dbModel.IsDelete = false;
 
         _mainCategoryRepo.Add(dbModel);
         _mainCategoryRepo.SaveChanges();
@@ -55,8 +54,6 @@ public class MainCategoryManager : IMainCategoryManager
         if (dbMainCategory == null)
             return false;
 
-        if (dbMainCategory.IsDelete == true)
-            return false;
 
         _mapper.Map(mainCategoryDTO, dbMainCategory);
 

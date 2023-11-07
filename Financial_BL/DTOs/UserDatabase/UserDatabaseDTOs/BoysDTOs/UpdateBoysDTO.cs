@@ -8,7 +8,6 @@ public class UpdateBoysDTO
     public string BoyBirthPlace { get; set; } = string.Empty;
     public string Question { get; set; } = string.Empty;
     public string Comment { get; set; } = string.Empty;
-    public bool IsDelete { get; set; }
 
     public int SCategory_Id { get; set; }
     public int MCategory_Id { get; set; }

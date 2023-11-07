@@ -55,9 +55,6 @@ public class CustomersManager : ICustomersManager
         if (dbCustomer == null)
             return false;
 
-        if (dbCustomer.IsDelete == true)
-            return false;
-
         _mapper.Map(customerDto, dbCustomer);
 
         _customersRepo.Update(dbCustomer);

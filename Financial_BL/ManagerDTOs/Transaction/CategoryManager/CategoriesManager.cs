@@ -55,8 +55,6 @@ public class CategoriesManager : ICategoriesManager
         if (dbCategory == null)
             return false;
 
-        if (dbCategory.IsDelete == true)
-            return false;
 
         _mapper.Map(categoyDto, dbCategory);
 

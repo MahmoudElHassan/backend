@@ -62,9 +62,6 @@ public class TransactionsManager : ITransactionsManager
         if (dbTransaction == null) 
             return false;
 
-        if (dbTransaction.IsDelete == true)
-            return false;
-
         _mapper.Map(transactionDTO, dbTransaction);
 
         _transactionsRepo.Update(dbTransaction);
