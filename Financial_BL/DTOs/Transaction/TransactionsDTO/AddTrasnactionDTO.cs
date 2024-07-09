@@ -26,6 +26,7 @@ public class AddTrasnactionDTO
 
     public bool Paid { get; set; }
 
+
     [MaxLength(20)]
     public string Country { get; set; } = string.Empty;
 

@@ -79,11 +79,8 @@ public class ToDoListManager : IToDoListManager
         if (dbToDoList == null)
             return false;
 
-        dbToDoList.StartDate = dbToDoList.StartDate.ToUniversalTime().Date;
-        dbToDoList.EndDate = dbToDoList.EndDate.ToUniversalTime().Date;
-
-        dbToDoList.Due = DueTime(dbToDoList.EndDate);
-        dbToDoList.TodayTask = GetTodayTask(dbToDoList.StartDate, dbToDoList.EndDate);
+        if (dbToDoList.IsDelete == true)
+            return false;
 
         _mapper.Map(todolistDTO, dbToDoList);
 

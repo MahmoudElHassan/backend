@@ -65,8 +65,10 @@ public class ApplicationDbContext : DbContext
             else
             {
                 entry.State = EntityState.Modified;
-                entity.GetType().GetProperty("IsDelete").SetValue(entity, false);
-            }
+                entity.GetType().GetProperty("IsDelete")?.SetValue(entity, true);
+
+            if (entry.State == EntityState.Added)
+                entity.GetType().GetProperty("IsDelete")?.SetValue(entity, false);
         }
         return base.SaveChanges();
     }
